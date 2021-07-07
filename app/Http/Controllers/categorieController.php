@@ -14,7 +14,7 @@ class categorieController extends Controller
 
         $data =  categorie::get();
         foreach ($data as $value) {
-            $tmp = DB::table('products')->where('id_categorie',$value->id_categorie)->limit(4)->get();
+            $tmp = DB::table('products')->orderBy('id_product','DESC')->where('id_categorie',$value->id_categorie)->limit(6)->get();
             $tmp[] = array('cat' => $value->name_categorie);
             $tmp = json_decode($tmp,true);
             array_push($global,$tmp);
